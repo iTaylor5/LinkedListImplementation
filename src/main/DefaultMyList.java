@@ -9,7 +9,7 @@ package main;
 *
 */
 
-import main.MyList;
+//import main.MyList;
 
 public class DefaultMyList implements MyList {
 
@@ -146,11 +146,6 @@ public class DefaultMyList implements MyList {
      */
     @Override
     public boolean contains(Object o) {
-//
-//        if( o == null){
-//            throw NullPointerException;
-//        }
-
         Node node = new Node(o);
 
         if(head == null){

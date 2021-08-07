@@ -1,14 +1,12 @@
 package main;
 
-import java.util.Arrays;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-import main.DefaultMyList;
 
-public class MainListChecker {
+public class ListTester {
 
     DefaultMyList test1;
 
@@ -21,59 +19,60 @@ public class MainListChecker {
         test1.add("3");
     }
 
+    @After
+    public void tearDown() throws Exception {
+        test1 = null;
+    }
+
     /**
-     * Test examines a BearFactory with 1 simple bear in it. The bear costs $30
-     * and there are no savings.
+     * Test ensures the add() worked and the size() works
      */
     @Test
     public void testSize() {
         assertEquals("Check the size method", test1.size(), 4);
     }
 
-//    public static void main(String[] args) {
-//
-//        DefaultMyList test1 = new DefaultMyList();
-//        System.out.println(test1);
-//        test1.remove("2");
+    /**
+     * Test checks the add()
+     */
+    @Test
+    public void testAdd() {
+        test1.add("four");
+        assertEquals("Check the list has increased by one", test1.size(), 5);
+    }
 
-//        System.out.println(myList);
-//
-//        myList.add("2");
-//        System.out.println(myList);
-//        System.out.println(myList.remove("1"));
-//
-//        System.out.println(myList);
-//        myList.add("1");
-//        System.out.println(myList);
-//        System.out.println(myList.remove("3"));
-//        System.out.println(myList);
-//
-//        System.out.println(myList.remove("5"));
-//        System.out.println(myList.remove("2"));
-//        System.out.println(myList.remove("1"));
-//
-//        System.out.println(myList);
-//        myList.add("1");
-//        myList.add("2");
-//        myList.add("3");
-//        System.out.println(myList);
-//        myList.clear();
-//        System.out.println(myList);
-//
-//        myList.add("1");
-//        myList.add("2");
-//        myList.add("3");
-//        System.out.println(myList);
-//        System.out.println(myList.size());
-//
-//        System.out.println(Arrays.toString(myList.toArray()));
-//        System.out.println(myList.contains("2"));
-//        System.out.println(myList.contains(null));
-//
-//        DefaultMyList myList2 = new DefaultMyList();
-//        myList2.add("2");
-//        myList2.add("4");
-//        System.out.println(myList.containsAll(myList2));
+    /**
+     * Test checks the remove()
+     */
+    @Test
+    public void testRemove() {
+        test1.remove("four");
+        assertEquals("Check the list has decreased by one", test1.size(), 4);
+        assertFalse(test1.contains("four"));
+    }
 
-//    }
+    /**
+     * Test checks the contains()
+     */
+    @Test
+    public void testContains() {
+
+        assertTrue(test1.contains("one"));
+        assertFalse(test1.contains("4"));
+    }
+
+    /**
+     * Test checks the containsAll()
+     */
+    @Test
+    public void testContainsAll() {
+        DefaultMyList list = new DefaultMyList();
+        list.add("one");
+        list.add("1");
+        assertTrue(test1.containsAll(list));
+        DefaultMyList list1 = new DefaultMyList();
+        list1.add("one");
+        list1.add("4");
+        assertFalse(test1.containsAll(list1));
+    }
 }
