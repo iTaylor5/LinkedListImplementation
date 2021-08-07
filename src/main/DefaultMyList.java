@@ -154,7 +154,7 @@ public class DefaultMyList implements MyList {
         if(head.data == node.data){
             return true;
         }
-        System.out.println("beginning loop");
+//        System.out.println("beginning loop");
         Node runner = head;
 
         while (runner.next != null){
